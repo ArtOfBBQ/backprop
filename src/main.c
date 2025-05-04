@@ -33,10 +33,6 @@ int main(void) {
     float new_observation[features_size];
     new_observation[0] = 10.0f;
     new_observation[1] = 10.0f;
-    float y = toknn_predict(
-        new_observation,
-        features_size);
-    printf("new prediction: %f\n", y);
     
     float labels[200] = {
         -10.0f,-10.0f,-20.0f,-10.0f,-12.0f,-10.0f,-10.0f,-10.0f,-10.0f,-10.0f,
@@ -108,11 +104,11 @@ int main(void) {
         /* const int16_t * train: */
             train,
         /* const uint32_t train_size: */
-            40,
+            400,
         /* const int16_t * labels: */
             labels,
         /* const uint32_t labels_size: */
-            20);
+            200);
     
     return 0;
 }

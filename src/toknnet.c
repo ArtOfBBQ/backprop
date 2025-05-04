@@ -735,6 +735,7 @@ static void toknn_train_single_epoch(
 
 static void nn_report_progress(
     const TOKNeuralNet * nn,
+    const uint32_t epoch_i,
     const float * train,
     const uint32_t train_size,
     const float * labels,
@@ -769,7 +770,7 @@ static void nn_report_progress(
         }
     }
     
-    printf("Loss: %f\n", loss_sum);
+    printf("Epoch: %u Loss: %f\n", epoch_i, loss_sum);
 }
 
 void toknn_train(
@@ -785,9 +786,9 @@ void toknn_train(
     assert(train_size >= labels_size);
     assert(train_size / labels_size == nn->features_size);
     
-    float learning_rate = 0.02f;
+    float learning_rate = 0.011f;
     
-    for (uint32_t epoch_i = 0; epoch_i < 5000; epoch_i++) {
+    for (uint32_t epoch_i = 0; epoch_i < 10000; epoch_i++) {
         
         learning_rate *= 0.999f;
         
@@ -806,10 +807,12 @@ void toknn_train(
                 labels_size);
         
         // Report progress
-        if (epoch_i < 30 || epoch_i % 1000 == 0) {
+        if (epoch_i < 10 || epoch_i % 20 == 0) {
             nn_report_progress(
                /* const TOKNeuralNet * nn: */
                    nn,
+                /* const uint32_t epoch_i: */
+                    epoch_i,
                /* const float * train: */
                    train,
                /* const uint32_t train_size: */

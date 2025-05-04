@@ -6,6 +6,7 @@ src/toknnet.c
 "
 
 COMPILER_ARGS="
+-D NDEBUG
 -Wall
 -O2
 -x c
